@@ -2,8 +2,8 @@
 PRACTICE Test 1, problem 3.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.  September 2016.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Hui Chen.  September 2016.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -95,10 +95,18 @@ def test_problem3a():
     print('Test 4 expected:', expected)
     print('       actual:  ', answer)
 
+    # Test 5 (it is on window 3):
+    point = rg.Point(300, 30)
+    expected = 16
+    answer = problem3a(window3, point, 4)
+    print()
+    print('Test 5 expected:', expected)
+    print('       actual:  ', answer)
+
     window3.close_on_mouse_click()
 
     # ------------------------------------------------------------------
-    # TODO: 2 (continued).
+    # DONE: 2 (continued).
     # Below this comment (or integrated with one of the above tests,
     # your choice), add 1 more test case of your own choosing.
     # ------------------------------------------------------------------
@@ -145,11 +153,53 @@ def problem3a(window, point, n):
     #    DIFFICULTY:      7 or 8
     #    TIME ESTIMATE:   20 to 35 minutes.
     # ------------------------------------------------------------------
+    total = 0
+
+    x = point.x
+    y = point.y
+    for k in range(n):
+        a = x + 20 * k
+        b = y + 10 * k
+        point = rg.Point(a, b)
+
+        c = x + 20 * k
+        d = y + 50 + 10 * k
+        point1 = rg.Point(c, d)
+
+        line = rg.Line(point, point1)
+
+        if k < 7:
+            line.thickness = 1 + 2 * k
+            # total = total + line.thickness
+        else:
+            line.thickness = 13
+            # total = total + 13 * (n - 7)
+        total = total + line.thickness
+        # if line.thickness < 13:
+        #     line.thickness = 1 + 2 * k
+        # else:
+        #     line.thickness = 13
+
+        line.attach_to(window)
+
+        # line.thickness = 1 + 2 * k
+        #
+
+        # line.thickness = 1
+
+    # for k in range(6):
+    #     line.thickness = 1 + 2 * k
+
+    window.render()
+    return total
 
 
 def test_problem3b():
     """ Tests the   problem3b   function. """
     # Test 1 is ALREADY DONE (here).
+    # Window 1:
+
+
     expected = 158
     answer = problem3b(4, rg.Point(100, 50))
     print()
@@ -157,6 +207,8 @@ def test_problem3b():
     print('       actual:  ', answer)
 
     # Test 2 is ALREADY DONE (here).
+
+
     expected = 539
     answer = problem3b(7, rg.Point(30, 30))
     print()
@@ -214,6 +266,32 @@ def problem3b(m, point1):
     #    DIFFICULTY:      8 or 9
     #    TIME ESTIMATE:   20 to 30 minutes.
     # ------------------------------------------------------------------
+
+    title = 'Test of Problem 3b: m=4, point1=(100,50)'
+    window1 = rg.RoseWindow(400, 650, title)
+    x = point1.x
+    y = point1.y
+
+    total = 0
+    for k in range(m):
+        y = y + 60
+        point1 = rg.Point(x, y)
+        n = 3 + 2 * k
+        total = total +problem3a(window1, point1, n)
+        window1.render()
+
+    window1.close_on_mouse_click()
+    return total
+
+
+    # return problem3b(m, point1)
+
+
+
+
+
+
+
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
