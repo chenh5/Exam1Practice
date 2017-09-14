@@ -30,7 +30,7 @@ import rosegraphics as rg
 
 def main():
     """ Calls the   TEST   functions in this module. """
-    # test_problem2a()
+    test_problem2a()
     test_problem2b()
 
 

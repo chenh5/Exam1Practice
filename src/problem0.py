@@ -306,6 +306,7 @@ def problem0c(circle, n, window):
     ####################################################################
     # ------------------------------------------------------------------
     circle.attach_to(window)
+    window.render()
 
     x = circle.center.x
     y = circle.center.y
@@ -315,8 +316,9 @@ def problem0c(circle, n, window):
         point = rg.Point(x + (k + 1) * (2 * r), y)
         circle = rg.Circle(point, r)
         circle.attach_to(window)
+        window.render(0.5)
 
-    window.render(0.5)
+    # window.render(0.5)
 
 
 # ----------------------------------------------------------------------

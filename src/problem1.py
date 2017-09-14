@@ -360,9 +360,10 @@ def problem1c(n):
     for k in range(n - 1):
         if is_prime(2 + k) is True:
             x = x * (2 + k)
-    total = 0
-    total = total + sum_of_digits(x)
-    return total
+    # total = 0
+    # total = total + sum_of_digits(x)
+    # sum_of_digits(x)
+    return sum_of_digits(x)
 
 
 # ----------------------------------------------------------------------

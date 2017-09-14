@@ -37,7 +37,7 @@ def main():
 def test_problem3a():
     """ Tests the   problem3a   function. """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  problem1a  function defined below.
     #   Include at least **   5   ** tests (we wrote four for you).
     # ------------------------------------------------------------------
@@ -145,7 +145,7 @@ def problem3a(window, point, n):
         :type n:      int
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -153,44 +153,25 @@ def problem3a(window, point, n):
     #    DIFFICULTY:      7 or 8
     #    TIME ESTIMATE:   20 to 35 minutes.
     # ------------------------------------------------------------------
-    total = 0
 
     x = point.x
     y = point.y
+    total = 0
+
     for k in range(n):
-        a = x + 20 * k
-        b = y + 10 * k
-        point = rg.Point(a, b)
-
-        c = x + 20 * k
-        d = y + 50 + 10 * k
-        point1 = rg.Point(c, d)
-
-        line = rg.Line(point, point1)
-
+        start = rg.Point(x + (20 * k), y + (10 * k))
+        end = rg.Point(x + (20 * k), y + 50 + (10 * k))
+        line = rg.Line(start, end)
         if k < 7:
-            line.thickness = 1 + 2 * k
-            # total = total + line.thickness
+            t = 1 + 2 * k
         else:
-            line.thickness = 13
-            # total = total + 13 * (n - 7)
-        total = total + line.thickness
-        # if line.thickness < 13:
-        #     line.thickness = 1 + 2 * k
-        # else:
-        #     line.thickness = 13
+            t = 13
+        total = total + t
+        line.thickness = t
 
         line.attach_to(window)
-
-        # line.thickness = 1 + 2 * k
-        #
-
-        # line.thickness = 1
-
-    # for k in range(6):
-    #     line.thickness = 1 + 2 * k
-
-    window.render()
+        window.render()
+    window.continue_on_mouse_click()
     return total
 
 
@@ -199,7 +180,6 @@ def test_problem3b():
     # Test 1 is ALREADY DONE (here).
     # Window 1:
 
-
     expected = 158
     answer = problem3b(4, rg.Point(100, 50))
     print()
@@ -207,7 +187,6 @@ def test_problem3b():
     print('       actual:  ', answer)
 
     # Test 2 is ALREADY DONE (here).
-
 
     expected = 539
     answer = problem3b(7, rg.Point(30, 30))
@@ -253,7 +232,7 @@ def problem3b(m, point1):
         :type point1: rg.Point
     """
     # ------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ####################################################################
@@ -267,30 +246,28 @@ def problem3b(m, point1):
     #    TIME ESTIMATE:   20 to 30 minutes.
     # ------------------------------------------------------------------
 
-    title = 'Test of Problem 3b: m=4, point1=(100,50)'
+    title = 'Test of Problem 3b: m, point1'
     window1 = rg.RoseWindow(400, 650, title)
-    x = point1.x
-    y = point1.y
 
+    # x = point1.x
+    # y = point1.y
+    #
+    # total = 0
+    # for k in range(m):
+    #     y = y + 60
+    #     point1 = rg.Point(x, y)
+    #     n = 3 + 2 * k
+    #     total = total +problem3a(window1, point1, n)
+    #     window1.render()
+    #
+    # window1.close_on_mouse_click()
+    # return total
     total = 0
     for k in range(m):
-        y = y + 60
-        point1 = rg.Point(x, y)
-        n = 3 + 2 * k
-        total = total +problem3a(window1, point1, n)
-        window1.render()
-
-    window1.close_on_mouse_click()
+        point1.y = point1.y + 60
+        t = problem3a(window1, point1, 3 + 2 * k)
+        total = total + t
     return total
-
-
-    # return problem3b(m, point1)
-
-
-
-
-
-
 
 
 # ----------------------------------------------------------------------
